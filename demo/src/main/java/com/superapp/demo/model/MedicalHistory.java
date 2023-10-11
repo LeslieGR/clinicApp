@@ -9,37 +9,36 @@ import java.util.List;
 public class MedicalHistory {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    int id;
+    private int id;
     @Column(name = "diabetes")
-    Boolean diabetes;
+    private Boolean diabetes;
     @Column(name = "high_blood_pressure")
-    Boolean highBloodPressure;
+    private Boolean highBloodPressure;
     @Column(name = "low_blood_pressure")
-    Boolean lowBloodPressure;
+    private Boolean lowBloodPressure;
     @Column(name = "hepatitis")
-    Boolean hepatitis;
+    private Boolean hepatitis;
     @Column(name = "hemophilia")
-    Boolean hemophilia;
+    private Boolean hemophilia;
     @Column(name = "cardiac_disease")
-    Boolean cardiacDisease;
+    private Boolean cardiacDisease;
     @Column(name = "pacemaker")
-    Boolean pacemaker;
+    private Boolean pacemaker;
     @Column(name = "HIV")
-    Boolean HIV;
+    private Boolean HIV;
     @Column(name = "AIDS")
-    Boolean AIDS;
-    @OneToOne
+    private Boolean AIDS;
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "user_id", referencedColumnName = "id")
-    User user;
-    @ManyToOne
-    @JoinColumn(name = "medical_procedure_id")
-    MedicalProcedure medicalProcedureList;
+    private User userId;
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "medical_procedure_id", referencedColumnName = "id")
+    private List<MedicalProcedure> medicalProcedureIdList;
 
     public MedicalHistory() {
     }
 
-
-    public MedicalHistory(int id, Boolean diabetes, Boolean highBloodPressure, Boolean lowBloodPressure, Boolean hepatitis, Boolean hemophilia, Boolean cardiacDisease, Boolean pacemaker, Boolean HIV, Boolean AIDS, User user, MedicalProcedure medicalProcedureList) {
+    public MedicalHistory(int id, Boolean diabetes, Boolean highBloodPressure, Boolean lowBloodPressure, Boolean hepatitis, Boolean hemophilia, Boolean cardiacDisease, Boolean pacemaker, Boolean HIV, Boolean AIDS, User userId, List<MedicalProcedure> medicalProcedureIdList) {
         this.id = id;
         this.diabetes = diabetes;
         this.highBloodPressure = highBloodPressure;
@@ -50,8 +49,8 @@ public class MedicalHistory {
         this.pacemaker = pacemaker;
         this.HIV = HIV;
         this.AIDS = AIDS;
-        this.user = user;
-        this.medicalProcedureList = medicalProcedureList;
+        this.userId = userId;
+        this.medicalProcedureIdList = medicalProcedureIdList;
     }
 
     public int getId() {
@@ -134,20 +133,20 @@ public class MedicalHistory {
         this.AIDS = AIDS;
     }
 
-    public User getUser() {
-        return user;
+    public User getUserId() {
+        return userId;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setUserId(User userId) {
+        this.userId = userId;
     }
 
-    public MedicalProcedure getMedicalProcedureList() {
-        return medicalProcedureList;
+    public List<MedicalProcedure> getMedicalProcedureIdList() {
+        return medicalProcedureIdList;
     }
 
-    public void setMedicalProcedureList(MedicalProcedure medicalProcedureList) {
-        this.medicalProcedureList = medicalProcedureList;
+    public void setMedicalProcedureIdList(List<MedicalProcedure> medicalProcedureIdList) {
+        this.medicalProcedureIdList = medicalProcedureIdList;
     }
 
     @Override
@@ -163,8 +162,8 @@ public class MedicalHistory {
                 ", pacemaker=" + pacemaker +
                 ", HIV=" + HIV +
                 ", AIDS=" + AIDS +
-                ", user=" + user +
-                ", medicalProcedureList=" + medicalProcedureList +
+                ", userId=" + userId +
+                ", medicalProcedureIdList=" + medicalProcedureIdList +
                 '}';
     }
 }

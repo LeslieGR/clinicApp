@@ -1,8 +1,8 @@
 package com.superapp.demo.controller;
 
+import com.superapp.demo.model.MedicalHistory;
 import com.superapp.demo.model.User;
 import com.superapp.demo.service.UserService;
-import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -17,6 +17,7 @@ public class UserController {
     public ResponseEntity<?> createUser(@RequestBody User user) {// en este endponint va a solicitar un
         return userService.createUser(user);
     }
+
     @GetMapping("get_user")
     public ResponseEntity<?> getUserByEmail(@RequestParam ("email") String email){
         return userService.getUserByEmail(email);

@@ -1,5 +1,6 @@
 package com.superapp.demo.service;
 
+import com.superapp.demo.model.MedicalHistory;
 import com.superapp.demo.model.User;
 import com.superapp.demo.repository.UserRepository;
 import lombok.extern.slf4j.Slf4j;

@@ -24,7 +24,7 @@ public class User {
     private String age;
     @Column(name ="gender", length = 20)
     private String gender;
-    @OneToOne(cascade = CascadeType.ALL)//para hacer referencia a que será un relación bidireccional
+    @OneToOne (cascade = CascadeType.ALL)//para hacer referencia a que será un relación bidireccional
     @JoinColumn(name = "medical_history_id", referencedColumnName = "id")//dice que crearemos una foreign key llamada "medicalHistoryId" en la tabla user, la cuál
     // será una referencia a la llave primaria de la tabla "medicalHistory" , llamada "id"
     private MedicalHistory medicalHistory;

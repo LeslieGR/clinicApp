@@ -9,7 +9,7 @@ import java.util.Optional;
 // hace todas  las operaciones relacionadas a la base de datos
 //siempre va a ser interfaz, métodos sin implementación, sólo con los párametros que va a llevar.
 
-public interface UserRepository extends JpaRepository <User, Integer> {//<tipo de objeto de tu clase, tipo de Id de es clase u objeto>
+public interface UserRepository extends JpaRepository <User, Integer> {//<tipo de objeto de tu clase, tipo de Id de esa clase u objeto>
     Optional<User> findByEmail (String email);
     void deleteByEmail (String email);
 }

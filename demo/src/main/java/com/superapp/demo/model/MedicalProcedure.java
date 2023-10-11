@@ -21,26 +21,26 @@ public class MedicalProcedure {
     private double remaining;
     @Column(name= "paid")
     private Boolean paid;
-    @ManyToOne
-    @JoinColumn(name = "medical_history_id")
-    private MedicalHistory medicalHistory;
-    @ManyToOne
-    @JoinColumn(name = "payment_id")
-    private Payment paymentList;
-    @ManyToOne
-    @JoinColumn(name = "appointment_id")
-    private Appointment appointmentList;
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "medical_history_id", referencedColumnName = "id")
+    private MedicalHistory medicalHistoryId;
 
-    public MedicalProcedure(int id, String procedureName, String treatment, double totalCost, double remaining, Boolean paid, MedicalHistory medicalHistory, Payment paymentList, Appointment appointmentList) {
+//    @OneToMany
+//    @JoinColumn(name = "payment_id")
+//    private Payment paymentId;
+//    @OneToMany
+//    @JoinColumn(name = "appointment_id")
+//    private Appointment appointmentId;
+
+
+    public MedicalProcedure(int id, String procedureName, String treatment, double totalCost, double remaining, Boolean paid, MedicalHistory medicalHistoryId) {
         this.id = id;
         this.procedureName = procedureName;
         this.treatment = treatment;
         this.totalCost = totalCost;
         this.remaining = remaining;
         this.paid = paid;
-        this.medicalHistory = medicalHistory;
-        this.paymentList = paymentList;
-        this.appointmentList = appointmentList;
+        this.medicalHistoryId = medicalHistoryId;
     }
 
     public int getId() {
@@ -91,28 +91,12 @@ public class MedicalProcedure {
         this.paid = paid;
     }
 
-    public MedicalHistory getMedicalHistory() {
-        return medicalHistory;
+    public MedicalHistory getMedicalHistoryId() {
+        return medicalHistoryId;
     }
 
-    public void setMedicalHistory(MedicalHistory medicalHistory) {
-        this.medicalHistory = medicalHistory;
-    }
-
-    public Payment getPaymentList() {
-        return paymentList;
-    }
-
-    public void setPaymentList(Payment paymentList) {
-        this.paymentList = paymentList;
-    }
-
-    public Appointment getAppointmentList() {
-        return appointmentList;
-    }
-
-    public void setAppointmentList(Appointment appointmentList) {
-        this.appointmentList = appointmentList;
+    public void setMedicalHistoryId(MedicalHistory medicalHistoryId) {
+        this.medicalHistoryId = medicalHistoryId;
     }
 
     @Override
@@ -124,9 +108,7 @@ public class MedicalProcedure {
                 ", totalCost=" + totalCost +
                 ", remaining=" + remaining +
                 ", paid=" + paid +
-                ", medicalHistory=" + medicalHistory +
-                ", paymentList=" + paymentList +
-                ", appointmentList=" + appointmentList +
+                ", medicalHistoryId=" + medicalHistoryId +
                 '}';
     }
 }
